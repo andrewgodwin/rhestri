@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rhestri"
+version = "1.0.0"
+description = "All The Lists"
+authors = [{ name = "Andrew Godwin", email = "andrew@aeracode.org" }]
+requires-python = ">=3.13"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "django~=6.0",
+    "urlman~=2.0",
+    "django-pydantic-field~=0.4.0",
+    "pytest-django~=4.11",
+    "psycopg2~=2.7",
+]
+
+[project.optional-dependencies]
+dev = ["black", "pre-commit"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "rhestri.settings"
