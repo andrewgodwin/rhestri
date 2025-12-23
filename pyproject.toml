@@ -15,10 +15,11 @@ classifiers = [
 ]
 dependencies = [
     "django~=6.0",
+    "psycopg2~=2.7",
     "urlman~=2.0",
     "django-pydantic-field~=0.4.0",
     "pytest-django~=4.11",
-    "psycopg2~=2.7",
+    "django-htmx~=1.27",
 ]
 
 [project.optional-dependencies]

@@ -1,9 +1,9 @@
-import urlman
 import pydantic
-from django_pydantic_field import SchemaField
-
+import urlman
+from django.conf import settings
 from django.db import models
 from django.utils.functional import cached_property
+from django_pydantic_field import SchemaField
 
 
 class ChecklistItem(pydantic.BaseModel):
@@ -29,12 +29,16 @@ class Template(models.Model):
     An overall template for a checklist. It's instantiated into Runs.
     """
 
-    name = models.CharField(max_length=255, unique=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
 
     items: list[ChecklistItem] = SchemaField()
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = [["user", "name"]]
 
     class urls(urlman.Urls):
         list = "/checklists/templates/"
@@ -67,16 +71,20 @@ class Run(models.Model):
     do not mysteriously propagate to this one.
     """
 
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     template = models.ForeignKey(
         "checklists.Template", on_delete=models.CASCADE, related_name="runs"
     )
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
     conditions: list[str] = SchemaField()
 
     items: list[ChecklistItem] = SchemaField()
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = [["user", "name"]]
 
     class urls(urlman.Urls):
         list = "/checklists/runs/"

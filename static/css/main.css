@@ -1,0 +1,42 @@
+:root {
+    --pico-font-family-sans-serif: Inter, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, Helvetica, Arial, "Helvetica Neue", sans-serif, var(--pico-font-family-emoji);
+    --pico-font-size: 87.5%;
+    --pico-line-height: 1.25;
+    --pico-form-element-spacing-vertical: 0.7rem;
+    --pico-form-element-spacing-horizontal: 0.7rem;
+    --pico-border-radius: 0.25rem;
+}
+
+@media (min-width: 576px) {
+    :root {
+        --pico-font-size: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    :root {
+        --pico-font-size: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    :root {
+        --pico-font-size: 105%;
+    }
+}
+
+@media (min-width: 1280px) {
+    :root {
+        --pico-font-size: 110%;
+    }
+}
+
+@media (min-width: 1536px) {
+    :root {
+        --pico-font-size: 115%;
+    }
+}
+
+.container.thin {
+    max-width: 700px;
+}
